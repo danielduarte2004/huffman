@@ -72,7 +72,8 @@ public class HuffProcessor {
     makeEncodings(root, "", encodings);
 
     for (String code : encodings)
-      out.writeBits(code.length(), Integer.parseInt(code,2));
+      if (code != null)
+        out.writeBits(code.length(), Integer.parseInt(code,2));
      
     String eof = encodings[PSEUDO_EOF];
     out.writeBits(eof.length(), Integer.parseInt(eof,2));
@@ -151,10 +152,10 @@ public class HuffProcessor {
   private HuffNode makeTree(int[] counts) {
     PriorityQueue<HuffNode> pq = new PriorityQueue<>();
     for (int i = 0; i < counts.length; i++) {
-      if (counts[i] == 0)
-        break;
-      
-      pq.add(new HuffNode(i, counts[i], null, null));
+      // if (counts[i] == 0)
+      //   break;
+      if (counts[i] > 0)
+        pq.add(new HuffNode(i, counts[i], null, null));
     }
 
     pq.add(new HuffNode(PSEUDO_EOF, 1, null, null));
