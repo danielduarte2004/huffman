@@ -1,4 +1,4 @@
-# Project 5: Huffman Coding/Compression
+# Huffman Coding/Compression
 
 Developed my own Java implementation of file compression and decompression using Huffman Coding. I also developed my own test cases and used files of different sizes to test the code.
 
